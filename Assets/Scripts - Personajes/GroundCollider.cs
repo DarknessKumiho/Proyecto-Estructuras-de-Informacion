@@ -6,16 +6,21 @@ public class GroundCollider : MonoBehaviour
 {
 
     private PlayerController Player_Zero;
+    private Rigidbody2D rb2d;
 
     void Start()
     {
         Player_Zero = GetComponentInParent<PlayerController>();
-
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        
+        if(col.gameObject.tag == "Platform")
+        {
+            Player_Zero.transform.parent = col.transform;
+            Player_Zero.grounded = true;
+        }
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -26,6 +31,7 @@ public class GroundCollider : MonoBehaviour
         }
         if (col.gameObject.tag == "Platform")
         {
+            Player_Zero.transform.parent = col.transform;
             Player_Zero.grounded = true;
         }
 
@@ -39,6 +45,7 @@ public class GroundCollider : MonoBehaviour
         }
         if (col.gameObject.tag == "Platform")
         {
+            Player_Zero.transform.parent = null;
             Player_Zero.grounded = false;
         }
     }

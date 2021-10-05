@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
 
     public bool jump;
+    private bool doubleJump;
     
     private Rigidbody2D rb2d;
 
@@ -36,20 +37,32 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Grounded", grounded);
 
         //saltar cuando estoy en el suelo
-        if (Input.GetKeyDown(KeyCode.Space) && (grounded == true))
+        if (grounded)
         {
-            jump = true;
+            doubleJump = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (grounded)
+            {
+                jump = true;
+                doubleJump = true;
+            } else if (doubleJump)
+            {
+                jump = true;
+                doubleJump = false;
+            }
+        }
     }
 
     void FixedUpdate()
     {
-        //Friccion Horizontal
+        //Friccion Horizontal mientras toca el suelo
         Vector2 fixedVelocity = rb2d.velocity;
-        fixedVelocity.x *= 0.9f;
+        fixedVelocity.x *= 0.85f;
 
-        if (grounded)
+        if (grounded && (Input.GetAxis("Horizontal") == 0))
         {
             rb2d.velocity = fixedVelocity;
         }
@@ -62,10 +75,6 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         rb2d.AddForce(Vector2.right * speed_x * horizontalInput);
 
-        //Limitadores de velocidad
-        float limitedSpeed = Mathf.Clamp(rb2d.velocity.x, -max_Speed, max_Speed);
-        rb2d.velocity = new Vector2(limitedSpeed, rb2d.velocity.y);
-
         //Girar el sprite a izquierda o derecha
         if(rb2d.velocity.x < 0)
         {
@@ -77,18 +86,25 @@ public class PlayerController : MonoBehaviour
         }
 
         //Saltar
-        if (jump && grounded)
+        if (jump)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
             rb2d.AddForce(Vector2.up * jump_Power, ForceMode2D.Impulse);
             jump = false;
         }
 
+        //Limitadores de velocidad
+        float limitedSpeed = Mathf.Clamp(rb2d.velocity.x, -max_Speed, max_Speed);
+        rb2d.velocity = new Vector2(limitedSpeed, rb2d.velocity.y);
+
     }
 
     void OnBecameInvisible()
     {
-        transform.position = new Vector2(-6, 2);
+        if (transform.position.y < -7)
+        {
+            transform.position = new Vector2(-7f, -2.7f);
+        }
     }
 
 }

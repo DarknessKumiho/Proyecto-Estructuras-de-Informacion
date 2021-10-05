@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ground
   - Platform
-  - Plataforma
   layers:
   - Default
   - TransparentFX
@@ -17,7 +16,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Interactive Object
   - Player
   - 
   - 
@@ -46,4 +45,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1458037637
+    locked: 0
+  - name: Interactive Object
+    uniqueID: 2052325109
     locked: 0

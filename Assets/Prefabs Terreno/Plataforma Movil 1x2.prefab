@@ -56,9 +56,10 @@ GameObject:
   - component: {fileID: 4166470847945049207}
   - component: {fileID: 4166470847945049208}
   - component: {fileID: 100260802341446256}
+  - component: {fileID: 8293112881654909391}
   m_Layer: 0
   m_Name: Plataforma Movil 1x2
-  m_TagString: Plataforma
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +72,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166470847945049209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4166470848349118832}
@@ -119,6 +120,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   from: {fileID: 4166470847945049207}
   to: {fileID: 8345455782954913911}
+--- !u!114 &8293112881654909391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166470847945049209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747eb9152044f884793174ed2bca6ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 8345455782954913911}
+  speed: 0
 --- !u!1 &4166470848349118833
 GameObject:
   m_ObjectHideFlags: 0
