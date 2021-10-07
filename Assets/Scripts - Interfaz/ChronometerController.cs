@@ -20,6 +20,8 @@ public class ChronometerController : MonoBehaviour
 
     public bool isPaused;
 
+    public ScoreBoardController Score;
+
     void Start()
     {
         //Establecer la escala de tiempo original.
@@ -33,6 +35,7 @@ public class ChronometerController : MonoBehaviour
 
         //Poniendo en el reloj el tiempo inicial que definimo en la variable publica.
         UpdateWatch(initialTime);
+
     }
 
     void Update()
@@ -47,14 +50,6 @@ public class ChronometerController : MonoBehaviour
             timeInSecondToShow += frameTimeWhitTimeScale;
 
             UpdateWatch(timeInSecondToShow);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-
         }
     }
 
@@ -76,6 +71,26 @@ public class ChronometerController : MonoBehaviour
 
         //Actualizar el componente text de   UI con el string.
         Text_To_Show.text = watchText;
+    }
+
+    public void ResetWatch()
+    {
+        TimeRecord TimeToSave = new TimeRecord();
+        TimeToSave.time = timeInSecondToShow;
+        TimeToSave.renderTime = Text_To_Show.text;
+        
+        SaverLoaderData DataBase = Score.DataBase;
+        DataBase.SaveData(TimeToSave, Score.FilePath, Score.FileName);
+
+        isPaused = true;
+        timeScale = initialTimeScale;
+        timeInSecondToShow = initialTime;
+        UpdateWatch(timeInSecondToShow);
+
+        Score.ClearScoreBoard();
+
+        Score.UpdateScores();
+
     }
 
 }
