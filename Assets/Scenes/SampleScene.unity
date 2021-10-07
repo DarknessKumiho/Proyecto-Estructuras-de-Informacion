@@ -1108,7 +1108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 157423608}
   - component: {fileID: 157423609}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Records Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5877,7 +5877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 925949057}
   - component: {fileID: 925949058}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Creditos Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13610,7 +13610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2117718254}
   - component: {fileID: 2117718255}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inicio Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
